@@ -225,3 +225,18 @@ main{height:auto;overflow:visible}
 
 .site-footer{padding:48px 0 72px;color:rgba(71,70,70,.7)}
 .underline-on-hover{text-decoration:underline}
+
+/* === Temporary fix: make "For Artists / For Audiences / For Promoters" visible === */
+#preview .bubble h2 {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* (optional) Keep spacing nicely balanced */
+#preview .bubble h2 {
+  margin: 0 0 28px;
+  line-height: 1.25;
+}
+#preview .bubble h2:last-child {
+  margin-bottom: 0;
+}
