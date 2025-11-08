@@ -102,65 +102,50 @@
         </div>
       </section>
 
-     {/* Page 5: Capabilities / Past Events */}
-        <Section id="capabilities" className="relative overflow-hidden text-center">
-          <div aria-hidden data-cap-bg className="absolute inset-0 z-0" style={{ backgroundImage: `url(${CAP_BG_1}), url(${CAP_BG_2})`, backgroundRepeat: 'no-repeat, no-repeat', backgroundSize: 'cover, contain', backgroundPosition: 'center, right 8% center' }} />
-          <div className="w-full relative z-10" data-locked="true">
-            <h2 id="past-events-title" className="text-3xl sm:text-5xl font-semibold tracking-tight mb-6 text-center" style={{ color: PAST_EVENTS_HEADING }}>Past Events</h2>
-            <div className="mt-6 flex justify-center">
-              <button
-                id="btn-view-past"
-                onClick={() => setShowPast(true)}
-                className="underline underline-offset-4 font-medium tracking-wide hover:opacity-80 focus:outline-none cursor-pointer"
-                style={{ color: ACCENT }}
-                aria-label="View past events"
-              >
-                View
-              </button>
-            </div>
-          </div>
-        </Section>
+     <section id="capabilities" class="section capabilities">
+  <div class="cap-bg" aria-hidden="true"></div>
+  <div class="container text-center">
+    <h2 class="title gold">Past Events</h2>
+    <p><button id="open-artists" class="btn btn-ghost underline-on-hover">View</button></p>
+  </div>
+</section>
 
-        {/* Modal: Past Events (A–Z grouped text) */}
-        <div id="past-modal" role="dialog" aria-modal={showPast} aria-labelledby="past-modal-title" className={`fixed inset-0 z-[100] ${showPast ? '' : 'pointer-events-none opacity-0'} transition-opacity duration-200`}>
-          <div className="absolute inset-0" style={{ background: hexToRgba('#000', 0.45) }} onClick={() => setShowPast(false)} />
-          <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="w-full max-w-3xl max-h-[80vh] overflow-auto rounded-2xl shadow-xl border bg-white" style={{ borderColor: hexToRgba(TEXT, 0.15) }}>
-              <div className="sticky top-0 px-5 py-4 border-b bg-white/90 backdrop-blur" style={{ borderColor: hexToRgba(TEXT, 0.1) }}>
-                <div className="flex items-center justify-between">
-                  <h3 id="past-modal-title" className="text-xl font-semibold" style={{ color: PAST_EVENTS_HEADING }}>Artists (A–Z)</h3>
-                  <button aria-label="Close" className="rounded-full px-3 py-1 text-sm hover:bg-black/5" onClick={() => setShowPast(false)}>Close</button>
-                </div>
-              </div>
-              <div className="px-6 py-5 text-sm" id="past-modal-content">
-                {(() => {
-                  const ARTISTS = ['44phantom','AJR','aespa','Alexander 23','Alexander Stewart','blackbear','Carrie Underwood','Charlie Puth','FINNEAS','iann dior','John Mayer','Kid Rock','KIIS-FM Jingle Ball','Machine Gun Kelly','New Orleans Jazz & Heritage Festival','St. Vincent','Stray Kids','The World of Hans Zimmer','Tim McGraw','Yebba'];
-                  const by = (a: string, b: string) => a.toLowerCase().localeCompare(b.toLowerCase());
-                  const sorted = Array.from(new Set(ARTISTS)).sort(by);
-                  const groups: Record<string, string[]> = {};
-                  sorted.forEach((name) => {
-                    const ch = name.trim().charAt(0).toUpperCase();
-                    const key = /[A-Z]/.test(ch) ? ch : '#';
-                    (groups[key] ||= []).push(name);
-                  });
-                  const alpha = ['#', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')].filter(k => groups[k]);
-                  return (
-                    <div data-artist-count={sorted.length}>
-                      {alpha.map((k) => (
-                        <div key={k} className="mb-4">
-                          <div className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: hexToRgba(TEXT, 0.6) }}>{k}</div>
-                          <ul className="space-y-1">
-                            {groups[k].map((n) => (<li key={n} className="leading-6" style={{ color: TEXT }}>{n}</li>))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- Modal: Artists A–Z -->
+<div id="artists-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="artists-title">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="document">
+    <div class="modal-header">
+      <h3 id="artists-title" class="title gold" style="margin:0">Artists (A–Z)</h3>
+      <button class="btn btn-ghost" id="close-artists" aria-label="Close">Close</button>
+    </div>
+    <div class="modal-body">
+      <ul class="artist-grid" role="list">
+        <li>#</li>
+        <li>44phantom</li>
+        <li>aespa</li>
+        <li>AJR</li>
+        <li>Alexander 23</li>
+        <li>Alexander Stewart</li>
+        <li>blackbear</li>
+        <li>Carrie Underwood</li>
+        <li>Charlie Puth</li>
+        <li>FINNEAS</li>
+        <li>iann dior</li>
+        <li>John Mayer</li>
+        <li>Kid Rock</li>
+        <li>KIIS-FM Jingle Ball</li>
+        <li>Machine Gun Kelly</li>
+        <li>New Orleans Jazz &amp; Heritage Festival</li>
+        <li>St. Vincent</li>
+        <li>Stray Kids</li>
+        <li>The World of Hans Zimmer</li>
+        <li>Tim McGraw</li>
+        <li>Yebba</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 
       <section id="preview" class="section text-center">
         <div class="container">
