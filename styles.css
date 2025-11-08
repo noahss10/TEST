@@ -11,7 +11,7 @@
   --shadow:0 10px 30px rgba(0,0,0,.08);
   --radius:24px;
 
-  /* set this to your real nav height */
+  /* REAL sticky header height (tweak to your nav) */
   --header-h:96px;
 }
 
@@ -24,29 +24,17 @@ body{
   background:var(--bg);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+
+  /* Page-level scroll snapping (Safari-friendly) */
+  scroll-snap-type:y mandatory;           /* use `proximity` for softer */
+  scroll-padding-top:var(--header-h);     /* account for sticky header */
 }
+
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block}
 .text-center{text-align:center}
 .container{width:100%;max-width:1120px;margin-inline:auto;padding:0 24px}
 .narrow{max-width:840px}
-
-/* =========================
-   Page-level scroll snapping
-   ========================= */
-html{
-  scroll-snap-type:y mandatory;         /* use 'proximity' if you want softer snap */
-  scroll-padding-top:var(--header-h);   /* snaps account for sticky header */
-}
-main{ height:auto; overflow:visible; }  /* body scrolls normally */
-
-/* Each major section fills the viewport below the header and centers */
-.section{
-  min-height:calc(100vh - var(--header-h));
-  display:flex; align-items:center; justify-content:center;
-  scroll-snap-align:center;
-  padding:0 !important;
-}
 
 /* =========================
    Header + Nav
@@ -78,10 +66,30 @@ main{ height:auto; overflow:visible; }  /* body scrolls normally */
   background:linear-gradient(to bottom, rgba(251,248,241,1) 0%, rgba(251,248,241,0) 100%);
 }
 
-/* Keep this available if you ever want mask-on-header instead */
+/* Keep available in case you want a mask on the header instead */
 .header-fade{
   -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) 16%);
   mask-image:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) 16%);
+}
+
+/* =========================
+   Scroll snapping (center each section
+   using start + margins; Safari-proof)
+   ========================= */
+main{ height:auto; overflow:visible; }  /* body is the scroller */
+
+.section{
+  /* Fill only the viewport BELOW the sticky header */
+  min-height:calc(100vh - var(--header-h));
+  display:flex; align-items:center; justify-content:center;
+
+  /* Snap logic: use 'start' and balance with margins so it centers visually */
+  scroll-snap-align:start;
+  scroll-margin-top:calc((100vh - var(--header-h)) / 2);
+  scroll-margin-bottom:calc((100vh - var(--header-h)) / 2);
+
+  /* Prevent old padding from pushing content low */
+  padding:0 !important;
 }
 
 /* =========================
@@ -108,7 +116,7 @@ main{ height:auto; overflow:visible; }  /* body scrolls normally */
 .cta-row{display:flex; gap:12px; justify-content:center; margin-top:24px}
 
 /* =========================
-   Background blobs (unchanged)
+   Background blobs
    ========================= */
 .bg-blob{position:fixed; inset:auto; z-index:-1; border-radius:9999px; filter:blur(60px); opacity:.45; pointer-events:none}
 .blob-1{top:-80px; left:-80px; width:45vw; height:45vw; background:#8FB1D033}
