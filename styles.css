@@ -190,3 +190,45 @@ main{ height:auto; overflow:visible; }  /* body is the scroller */
 .form-actions{text-align:center; padding-top:6px}
 
 .site-footer{padding:48px 0 72px; color:rgba(71,70,70,.7)}
+/* Past Events: make the background FULL COLOR (no washout) */
+.capabilities .cap-bg{
+  position:absolute; inset:0; z-index:0;
+  background-image:url('https://i.ibb.co/39QSX9dL/stage-bluebell-crisp-2560x1440.webp'), url('https://i.ibb.co/vCSXJ2dH/twinkle-overlay-2560x1440.png');
+  background-repeat:no-repeat,no-repeat;
+  background-size:cover,contain;
+  background-position:center,right 8% center;
+  opacity:1;            /* was .65 – set to 1 for full color */
+  filter:none;          /* ensure no grayscale/desaturate */
+}
+.capabilities .container{ position:relative; z-index:2; }
+
+/* Modal (overlay) */
+.hidden{ display:none !important; }
+.modal{ position:fixed; inset:0; z-index:2000; }
+.modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.55); }
+.modal-panel{
+  position:relative;
+  margin:8vh auto;
+  max-width:900px; width:92%;
+  background:#fff; color:var(--text);
+  border-radius:24px; padding:24px;
+  box-shadow:var(--shadow);
+}
+.modal-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.modal-body{ max-height:70vh; overflow:auto; }
+
+/* Artists list inside modal */
+.artist-grid{
+  display:grid; gap:10px;
+  grid-template-columns:repeat(1,minmax(0,1fr));
+}
+@media (min-width:640px){ .artist-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1024px){ .artist-grid{ grid-template-columns:repeat(3,1fr); } }
+.artist-grid li{
+  padding:8px 0;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+/* Tiny helper for the 'View' button look */
+.underline-on-hover{ text-decoration:underline; }
+
