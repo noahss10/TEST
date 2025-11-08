@@ -20,10 +20,11 @@
         </ul>
       </nav>
     </header>
-    
-<div>
 
-    <main>
+<!-- header fade overlay (does not affect layout) -->
+<div class="scroll-fade" aria-hidden="true"></div>
+
+<main>
       <div class="bg-blob blob-1" aria-hidden="true"></div>
       <div class="bg-blob blob-2" aria-hidden="true"></div>
       <div class="bg-blob blob-3" aria-hidden="true"></div>
@@ -32,7 +33,6 @@
         <div class="container text-center">
           <h1 class="hero-title">Bridges for <span class="accent-ink">Music</span></h1>
           <p class="lead">Bringing the world closer, one show at a time.</p>
-          </div>
         </div>
       </section>
 
@@ -123,17 +123,11 @@
   <div class="modal-backdrop" data-close></div>
   <div class="modal-panel" role="document">
     <div class="modal-header">
-      <h3 id="artists-title" class="title gold" style="margin:0">Artists (A–Z)</h3>
-      <button
-  id="open-artists"
-  class="btn underline-on-hover"
-  style="color: var(--gold); border: 1px solid var(--gold); background: transparent; font-weight: 600; transition: all 0.25s ease;"
-  onmouseover="this.style.background='var(--gold)'; this.style.color='white';"
-  onmouseout="this.style.background='transparent'; this.style.color='var(--gold)';"
-      >
-        View
-      </button>
-    </div>
+  <h3 id="artists-title" class="title gold" style="margin:0">Artists (A–Z)</h3>
+  <button id="close-artists" class="btn btn-ghost underline-on-hover" style="font-weight:600">
+    Close
+  </button>
+</div>
     <div class="modal-body">
       <ul class="artist-grid" role="list">
         <li>44 Phantom</li>
@@ -256,10 +250,8 @@
       if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
     });
   </script>
-</body>
-</html>
 <style>
   #past-events-title { opacity: 1 !important; transform: none !important; }
 </style>
-  </body>
+</body>
 </html>
