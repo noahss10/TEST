@@ -22,6 +22,23 @@
     </header>
     
 <div class="scroll-fade" aria-hidden="true"></div>
+    <!-- Debug/failsafe notch overlay -->
+<div
+  class="scroll-fade"
+  aria-hidden="true"
+  style="
+    position: sticky;
+    top: 0;
+    height: 120px;         /* try 120 first; you can lower to 96 later */
+    z-index: 39;           /* header is 40 in your CSS */
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      var(--bg, #FBF8F1) 0%,
+      rgba(251,248,241,0) 85%
+    );
+  "
+></div>
     
     <main>
       <div class="bg-blob blob-1" aria-hidden="true"></div>
