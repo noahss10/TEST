@@ -238,5 +238,28 @@
 <style>
   #past-events-title { opacity: 1 !important; transform: none !important; }
 </style>
+    <script>
+  // Smooth, reliable in-page scrolling that plays nice with sticky header + snap
+  const HEADER_H = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 96;
+
+  function scrollToTarget(id) {
+    const el = document.querySelector(id);
+    if (!el) return;
+    // First align to the start (so snap can do its thing)…
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // …then nudge so it visually centers under the sticky header:
+    setTimeout(() => {
+      const y = el.getBoundingClientRect().top + window.pageYOffset - Math.max(0, HEADER_H / 2);
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }, 50);
+  }
+
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToTarget(a.getAttribute('href'));
+    });
+  });
+</script>
 </body>
 </html>
