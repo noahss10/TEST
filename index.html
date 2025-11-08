@@ -201,5 +201,34 @@
         else header.classList.remove('scrolled');
       });
     </script>
+
+  <!-- New modal functionality -->
+  <script>
+    // === Past Events modal ===
+    const openArtists = document.getElementById('open-artists');
+    const modal = document.getElementById('artists-modal');
+    const closeArtists = document.getElementById('close-artists');
+
+    function openModal(){
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    openArtists?.addEventListener('click', openModal);
+    closeArtists?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e) => {
+      if (e.target.hasAttribute('data-close')) closeModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+    });
+  </script>
+</body>
+</html>
+
   </body>
 </html>
