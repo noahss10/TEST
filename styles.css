@@ -240,3 +240,11 @@ main{height:auto;overflow:visible}
 #preview .bubble h2:last-child {
   margin-bottom: 0;
 }
+
+/* === Fix: make "Past Events" heading always visible === */
+#capabilities .title.gold {
+  opacity: 1 !important;
+  transform: none !important;
+  margin-bottom: 24px;  /* adds breathing room above the View button */
+  line-height: 1.2;
+}
