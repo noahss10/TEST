@@ -232,3 +232,18 @@ main{ height:auto; overflow:visible; }  /* body is the scroller */
 /* Tiny helper for the 'View' button look */
 .underline-on-hover{ text-decoration:underline; }
 
+/* === Past Events "View" button styling === */
+#open-artists {
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  background: transparent;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+#open-artists:hover {
+  background: var(--gold);
+  color: white;
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
