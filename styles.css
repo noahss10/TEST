@@ -23,3 +23,25 @@ a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:bloc
     rgba(251,248,241,0) 80%
   );
 }
+/* --- Notch overlay (fade effect below header) --- */
+.scroll-fade {
+  position: sticky;
+  top: 0;
+  height: 96px; /* match your header/nav height */
+  z-index: 30;  /* stays below the header */
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    var(--bg, #FBF8F1) 0%,
+    rgba(251, 248, 241, 0) 80%
+  );
+}
+
+/* --- Make header slightly visible so fade can blend --- */
+.site-header {
+  background: rgba(251, 248, 241, 0.85);
+  backdrop-filter: saturate(120%) blur(6px);
+  border-bottom: 1px solid rgba(71, 70, 70, 0.15);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  z-index: 40; /* keep above the overlay */
+}
