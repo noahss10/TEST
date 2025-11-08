@@ -190,3 +190,34 @@ main{ height:auto; overflow:visible; }  /* body is the scroller */
 .form-actions{text-align:center; padding-top:6px}
 
 .site-footer{padding:48px 0 72px; color:rgba(71,70,70,.7)}
+/* --- Make both html and body a snap container (mobile-safe) --- */
+html, body {
+  /* keep your existing styles; just ensure snap is on both */
+  scroll-snap-type: y mandatory;           /* use 'proximity' if you want looser */
+  scroll-padding-top: var(--header-h);
+}
+
+/* --- Sections: force snap to engage on mobile --- */
+.section {
+  scroll-snap-align: start;                /* we use start + margins trick */
+  scroll-snap-stop: always;                /* iOS: makes snap actually trigger */
+  /* keep the other properties you already have for centering */
+  min-height: calc(100vh - var(--header-h));
+  display: flex; align-items: center; justify-content: center;
+  scroll-margin-top:  calc((100vh - var(--header-h)) / 2);
+  scroll-margin-bottom: calc((100vh - var(--header-h)) / 2);
+  padding: 0 !important;
+}
+
+/* --- Use dynamic viewport units on mobile so toolbars don't break vh math --- */
+@supports (height: 100dvh) {
+  .section {
+    min-height: calc(100dvh - var(--header-h));
+    scroll-margin-top:    calc((100dvh - var(--header-h)) / 2);
+    scroll-margin-bottom: calc((100dvh - var(--header-h)) / 2);
+  }
+}
+
+/* (Optional, but helps with rubber-banding on iOS) */
+html { overscroll-behavior-y: contain; }
+
