@@ -118,7 +118,15 @@
   <div class="modal-panel" role="document">
     <div class="modal-header">
       <h3 id="artists-title" class="title gold" style="margin:0">Artists (A–Z)</h3>
-      <button class="btn btn-ghost" id="close-artists" aria-label="Close">Close</button>
+      <button
+  id="open-artists"
+  class="btn underline-on-hover"
+  style="color: var(--gold); border: 1px solid var(--gold); background: transparent; font-weight: 600; transition: all 0.25s ease;"
+  onmouseover="this.style.background='var(--gold)'; this.style.color='white';"
+  onmouseout="this.style.background='transparent'; this.style.color='var(--gold)';"
+      >
+        View
+      </button>
     </div>
     <div class="modal-body">
       <ul class="artist-grid" role="list">
