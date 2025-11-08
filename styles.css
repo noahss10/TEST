@@ -30,3 +30,11 @@ a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:bloc
   border-bottom: 1px solid rgba(71, 70, 70, 0.15);
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
 }
+/* Ensure base header is visible so the fade shows */
+.site-header {
+  background: rgba(251, 248, 241, 0.85);
+  backdrop-filter: saturate(120%) blur(6px);
+  border-bottom: 1px solid rgba(71,70,70,.15);
+  box-shadow: 0 2px 16px rgba(0,0,0,.04);
+  z-index: 40; /* stays above the overlay */
+}
