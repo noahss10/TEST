@@ -221,3 +221,44 @@ html, body {
 /* (Optional, but helps with rubber-banding on iOS) */
 html { overscroll-behavior-y: contain; }
 
+/* ==== Softer snap everywhere ==== */
+html, body { scroll-snap-type: none; }          /* reset first */
+
+/* Body is the scroller so the sticky header works */
+main { height: auto; overflow: visible; }
+
+/* Shared section sizing (keep centered layout) */
+.section {
+  min-height: calc(100vh - var(--header-h));
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 !important;
+  /* no scroll-snap-stop or margins by default */
+}
+
+/* --- Desktop & laptop (mouse/trackpad) --- */
+@media (hover: hover) and (pointer: fine) {
+  body { 
+    scroll-snap-type: y proximity;      /* softer than mandatory */
+    scroll-padding-top: var(--header-h);
+  }
+  .section {
+    scroll-snap-align: center;          /* center, but no margins = less sticky */
+    scroll-snap-stop: normal;
+  }
+}
+
+/* --- Mobile & tablets (touch) --- */
+@media (hover: none) and (pointer: coarse) {
+  /* WebKit quirk: enable on both html and body, but keep it 'proximity' */
+  html, body {
+    scroll-snap-type: y proximity;
+    scroll-padding-top: var(--header-h);
+  }
+  .section {
+    scroll-snap-align: center;          /* use center (not start) to reduce stickiness */
+    scroll-snap-stop: normal;
+    min-height: calc(100dvh - var(--header-h));  /* toolbar-safe height */
+    /* no scroll-margin top/bottom */
+  }
+}
+
