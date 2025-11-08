@@ -10,9 +10,7 @@
   --cotton:#F5F3EE;
   --shadow:0 10px 30px rgba(0,0,0,.08);
   --radius:24px;
-
-  /* REAL sticky header height (tweak to your nav) */
-  --header-h:96px;
+  --header-h:96px; /* nav height */
 }
 
 *{box-sizing:border-box}
@@ -25,11 +23,9 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 
-  /* Page-level scroll snapping (Safari-friendly) */
-  scroll-snap-type:y mandatory;           /* use `proximity` for softer */
-  scroll-padding-top:var(--header-h);     /* account for sticky header */
+  scroll-snap-type:y mandatory;
+  scroll-padding-top:var(--header-h);
 }
-
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block}
 .text-center{text-align:center}
@@ -40,7 +36,7 @@ img{max-width:100%;height:auto;display:block}
    Header + Nav
    ========================= */
 .site-header{
-  position:sticky; top:0; z-index:1000;
+  position:sticky;top:0;z-index:1000;
   background:rgba(251,248,241,.95);
   backdrop-filter:saturate(120%) blur(6px);
   border-bottom:1px solid rgba(71,70,70,.15);
@@ -48,92 +44,78 @@ img{max-width:100%;height:auto;display:block}
   transition:background .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 .nav{
-  display:flex; align-items:center; justify-content:space-between;
+  display:flex;align-items:center;justify-content:space-between;
   height:var(--header-h);
-  gap:20px; max-width:1200px; margin:0 auto; padding:0 24px;
+  gap:20px;max-width:1200px;margin:0 auto;padding:0 24px;
 }
 .logo img{height:var(--header-h)}
-.nav-links{display:none; gap:28px; align-items:center}
-.nav-links a{text-transform:uppercase; font-size:13px; letter-spacing:.14em; opacity:.95}
+.nav-links{display:none;gap:28px;align-items:center}
+.nav-links a{text-transform:uppercase;font-size:13px;letter-spacing:.14em;opacity:.95}
 .nav-links a:hover{opacity:.8}
 @media (min-width:768px){.nav-links{display:flex}}
 
-/* Optional visual fade below header (does NOT affect layout) */
 .scroll-fade{
-  position:fixed; top:0; left:0; right:0;
+  position:fixed;top:0;left:0;right:0;
   height:var(--header-h);
-  z-index:900; pointer-events:none;
-  background:linear-gradient(to bottom, rgba(251,248,241,1) 0%, rgba(251,248,241,0) 100%);
-}
-
-/* Keep available in case you want a mask on the header instead */
-.header-fade{
-  -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) 16%);
-  mask-image:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) 16%);
+  z-index:900;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(251,248,241,1)0%,rgba(251,248,241,0)100%);
 }
 
 /* =========================
-   Scroll snapping (center each section
-   using start + margins; Safari-proof)
+   Scroll snapping
    ========================= */
-main{ height:auto; overflow:visible; }  /* body is the scroller */
-
+main{height:auto;overflow:visible}
 .section{
-  /* Fill only the viewport BELOW the sticky header */
   min-height:calc(100vh - var(--header-h));
-  display:flex; align-items:center; justify-content:center;
-
-  /* Snap logic: use 'start' and balance with margins so it centers visually */
+  display:flex;align-items:center;justify-content:center;
   scroll-snap-align:start;
-  scroll-margin-top:calc((100vh - var(--header-h)) / 2);
-  scroll-margin-bottom:calc((100vh - var(--header-h)) / 2);
-
-  /* Prevent old padding from pushing content low */
-  padding:0 !important;
+  scroll-margin-top:calc((100vh - var(--header-h))/2);
+  scroll-margin-bottom:calc((100vh - var(--header-h))/2);
+  padding:0!important;
 }
 
 /* =========================
-   Hero / typography / buttons
+   Typography / buttons
    ========================= */
-.hero-title{font-size:48px; line-height:1.05; margin:8px 0 0; font-weight:700; letter-spacing:-.02em}
+.hero-title{font-size:48px;line-height:1.05;margin:8px 0 0;font-weight:700;letter-spacing:-.02em}
 @media (min-width:640px){.hero-title{font-size:80px}}
-.copy{font-size:18px; color:rgba(71,70,70,.86)}
-.lead{font-size:20px; color:rgba(71,70,70,.80); margin:10px 0 0}
-.title{font-weight:700; letter-spacing:-.01em; line-height:1.15; margin:0 0 16px}
+.copy{font-size:18px;color:rgba(71,70,70,.86)}
+.lead{font-size:20px;color:rgba(71,70,70,.8);margin:10px 0 0}
+.title{font-weight:700;letter-spacing:-.01em;line-height:1.15;margin:0 0 16px}
 .title.text-center{text-align:center}
 .title.gold{color:var(--gold)}
 .accent{color:var(--accent)}
 .accent-ink{color:var(--ink)}
 
 .btn{
-  display:inline-block; border-radius:999px; padding:10px 18px; font-weight:600;
-  transition:.2s transform,.2s filter,.2s box-shadow; will-change:transform,filter
+  display:inline-block;border-radius:999px;padding:10px 18px;font-weight:600;
+  transition:.2s transform,.2s filter,.2s box-shadow;will-change:transform,filter
 }
-.btn:hover{transform:translateY(-1px); filter:brightness(1.04)}
-.btn-ghost{border:1px solid rgba(71,70,70,.25); background:transparent; color:var(--text)}
-.btn-accent{background:var(--accent); color:white; box-shadow:var(--shadow)}
-.btn-ink{background:var(--ink); color:white; box-shadow:var(--shadow)}
-.cta-row{display:flex; gap:12px; justify-content:center; margin-top:24px}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.04)}
+.btn-ghost{border:1px solid rgba(71,70,70,.25);background:transparent;color:var(--text)}
+.btn-accent{background:var(--accent);color:white;box-shadow:var(--shadow)}
+.btn-ink{background:var(--ink);color:white;box-shadow:var(--shadow)}
+.cta-row{display:flex;gap:12px;justify-content:center;margin-top:24px}
 
 /* =========================
    Background blobs
    ========================= */
-.bg-blob{position:fixed; inset:auto; z-index:-1; border-radius:9999px; filter:blur(60px); opacity:.45; pointer-events:none}
-.blob-1{top:-80px; left:-80px; width:45vw; height:45vw; background:#8FB1D033}
-.blob-2{top:30vh; right:-120px; width:35vw; height:35vw; background:#8FB1D029}
-.blob-3{bottom:-100px; left:25vw; width:38vw; height:38vw; background:#38486222}
+.bg-blob{position:fixed;inset:auto;z-index:-1;border-radius:9999px;filter:blur(60px);opacity:.45;pointer-events:none}
+.blob-1{top:-80px;left:-80px;width:45vw;height:45vw;background:#8FB1D033}
+.blob-2{top:30vh;right:-120px;width:35vw;height:35vw;background:#8FB1D029}
+.blob-3{bottom:-100px;left:25vw;width:38vw;height:38vw;background:#38486222}
 
 /* =========================
    Grids / cards
    ========================= */
-.grid.features{display:grid; gap:18px; margin-top:40px; grid-template-columns:repeat(1,minmax(0,1fr))}
+.grid.features{display:grid;gap:18px;margin-top:40px;grid-template-columns:repeat(1,minmax(0,1fr))}
 @media (min-width:640px){.grid.features{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1024px){.grid.features{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 .card{
-  background:white; border:1px solid rgba(143,177,208,.25); border-radius:var(--radius);
-  padding:18px 18px 16px; box-shadow:var(--shadow);
-  transform:translateY(8px); opacity:0; animation:rise .7s ease forwards
+  background:white;border:1px solid rgba(143,177,208,.25);border-radius:var(--radius);
+  padding:18px 18px 16px;box-shadow:var(--shadow);
+  transform:translateY(8px);opacity:0;animation:rise .7s ease forwards
 }
 .card:nth-child(1){animation-delay:.05s}
 .card:nth-child(2){animation-delay:.1s}
@@ -141,109 +123,105 @@ main{ height:auto; overflow:visible; }  /* body is the scroller */
 .card:nth-child(4){animation-delay:.2s}
 .card:nth-child(5){animation-delay:.25s}
 .card:nth-child(6){animation-delay:.3s}
-.card h3{margin:0 0 6px; color:var(--accent); font-weight:700}
-@keyframes rise{to{transform:none; opacity:1}}
+.card h3{margin:0 0 6px;color:var(--accent);font-weight:700}
+@keyframes rise{to{transform:none;opacity:1}}
 
 /* =========================
    Section backgrounds
    ========================= */
-.callouts{position:relative; overflow:hidden; text-align:center}
+.callouts{position:relative;overflow:hidden;text-align:center}
 .callouts .callouts-backdrop{
-  position:absolute; inset:0; z-index:0;
+  position:absolute;inset:0;z-index:0;
   background-image:url('https://i.ibb.co/NgBvBmSb/concert-bg2-soft-blue-crisp-2560x1440.webp');
-  background-size:cover; background-position:center; filter:saturate(105%)
+  background-size:cover;background-position:center;filter:saturate(105%)
 }
 .callouts::after{
-  content:""; position:absolute; inset:0; z-index:1;
-  background:linear-gradient(180deg, rgba(0,0,0,.12) 0%, rgba(0,0,0,.08) 35%, rgba(0,0,0,.18) 100%)
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,.12)0%,rgba(0,0,0,.08)35%,rgba(0,0,0,.18)100%)
 }
-.callouts .container{position:relative; z-index:2; padding:64px 24px}
-.mission-title{color:var(--gold); margin:0}
-.mission-copy{font-weight:700; font-size:22px; color:rgba(56,72,98,.95); line-height:1.75}
+.callouts .container{position:relative;z-index:2;padding:64px 24px}
+.mission-title{color:var(--gold);margin:0}
+.mission-copy{font-weight:700;font-size:22px;color:rgba(56,72,98,.95);line-height:1.75}
 .cotton{color:var(--cotton)}
 
-.capabilities{position:relative; overflow:hidden}
+.capabilities{position:relative;overflow:hidden}
 .capabilities .cap-bg{
-  position:absolute; inset:0; z-index:0;
-  background-image:url('https://i.ibb.co/39QSX9dL/stage-bluebell-crisp-2560x1440.webp'), url('https://i.ibb.co/vCSXJ2dH/twinkle-overlay-2560x1440.png');
-  background-repeat:no-repeat,no-repeat; background-size:cover,contain; background-position:center,right 8% center;
-  opacity:.65
+  position:absolute;inset:0;z-index:0;
+  background-image:url('https://i.ibb.co/39QSX9dL/stage-bluebell-crisp-2560x1440.webp'),url('https://i.ibb.co/vCSXJ2dH/twinkle-overlay-2560x1440.png');
+  background-repeat:no-repeat,no-repeat;background-size:cover,contain;
+  background-position:center,right 8% center;
+  opacity:1;filter:none;
+}
+
+/* =========================
+   Modal (Past Events)
+   ========================= */
+.hidden{display:none!important}
+.modal{position:fixed;inset:0;z-index:2000}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.modal-panel{
+  position:relative;margin:8vh auto;max-width:900px;width:92%;
+  background:#fff;color:var(--text);border-radius:24px;padding:24px;box-shadow:var(--shadow);
+}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.modal-body{max-height:70vh;overflow:auto}
+.artist-grid{display:grid;gap:10px;grid-template-columns:repeat(1,minmax(0,1fr))}
+@media (min-width:640px){.artist-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1024px){.artist-grid{grid-template-columns:repeat(3,1fr)}}
+.artist-grid li{padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+
+/* Gold View button */
+#open-artists{
+  color:var(--gold)!important;border:1px solid var(--gold)!important;
+  background:transparent!important;font-weight:600;transition:all .25s ease;
+}
+#open-artists:hover{
+  background:var(--gold)!important;color:white!important;
+  box-shadow:var(--shadow);transform:translateY(-1px);
 }
 
 /* =========================
    Artists / forms / footer
    ========================= */
-.artist-list{display:flex; flex-wrap:wrap; gap:10px 16px; justify-content:center; margin:12px 0 0; padding:0; list-style:none}
-.artist-list li{background:white; border:1px solid rgba(71,70,70,.12); border-radius:999px; padding:6px 12px}
+.artist-list{display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:center;margin:12px 0 0;padding:0;list-style:none}
+.artist-list li{background:white;border:1px solid rgba(71,70,70,.12);border-radius:999px;padding:6px 12px}
 
-#preview .bubble{background:rgba(143,177,208,.88); color:white; border-radius:48px; padding:48px 24px; box-shadow:var(--shadow)}
-#preview .bubble h2{margin:0; font-size:34px; line-height:1.2}
-#preview .bubble-line{border:none; height:1px; background:rgba(255,255,255,.7); margin:14px auto; width:50%}
-#preview .bubble-links{display:flex; gap:12px; justify-content:center; text-transform:uppercase; font-size:12px; letter-spacing:.18em}
+#preview .bubble{
+  background:rgba(143,177,208,.88);
+  color:white;border-radius:48px;
+  padding:48px 24px;box-shadow:var(--shadow);
+  text-align:center;
+}
+
+/* Spacing + staggered animation for For Artists/Audiences/Promoters */
+#preview .bubble h2{
+  margin:0 0 28px;line-height:1.25;
+  opacity:0;transform:translateY(12px);
+  transition:opacity 500ms ease,transform 500ms ease;
+}
+#preview .bubble h2:last-child{margin-bottom:0}
+.in-view #preview .bubble h2:nth-of-type(1){transition-delay:0ms}
+.in-view #preview .bubble h2:nth-of-type(2){transition-delay:120ms}
+.in-view #preview .bubble h2:nth-of-type(3){transition-delay:240ms}
+.in-view #preview .bubble h2{opacity:1;transform:translateY(0)}
+
+@media (prefers-reduced-motion:reduce){
+  #preview .bubble h2,
+  .in-view #preview .bubble h2{
+    transition:none;transform:none;opacity:1;
+  }
+}
+
+#preview .bubble-line{border:none;height:1px;background:rgba(255,255,255,.7);margin:14px auto;width:50%}
+#preview .bubble-links{display:flex;gap:12px;justify-content:center;text-transform:uppercase;font-size:12px;letter-spacing:.18em}
 #preview .bubble-links a{opacity:.9}
 #preview .bubble-links a:hover{opacity:1}
 
-.form{display:grid; grid-template-columns:1fr; gap:14px; margin-top:8px; text-align:left}
-.form label{display:grid; gap:6px}
+.form{display:grid;grid-template-columns:1fr;gap:14px;margin-top:8px;text-align:left}
+.form label{display:grid;gap:6px}
 .form label.full{grid-column:1 / -1}
-.form input,.form textarea{border:1px solid rgba(71,70,70,.2); background:white; color:var(--text); border-radius:16px; padding:10px 12px; font:inherit}
-.form-actions{text-align:center; padding-top:6px}
+.form input,.form textarea{border:1px solid rgba(71,70,70,.2);background:white;color:var(--text);border-radius:16px;padding:10px 12px;font:inherit}
+.form-actions{text-align:center;padding-top:6px}
 
-.site-footer{padding:48px 0 72px; color:rgba(71,70,70,.7)}
-/* Past Events: make the background FULL COLOR (no washout) */
-.capabilities .cap-bg{
-  position:absolute; inset:0; z-index:0;
-  background-image:url('https://i.ibb.co/39QSX9dL/stage-bluebell-crisp-2560x1440.webp'), url('https://i.ibb.co/vCSXJ2dH/twinkle-overlay-2560x1440.png');
-  background-repeat:no-repeat,no-repeat;
-  background-size:cover,contain;
-  background-position:center,right 8% center;
-  opacity:1;            /* was .65 – set to 1 for full color */
-  filter:none;          /* ensure no grayscale/desaturate */
-}
-.capabilities .container{ position:relative; z-index:2; }
-
-/* Modal (overlay) */
-.hidden{ display:none !important; }
-.modal{ position:fixed; inset:0; z-index:2000; }
-.modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.55); }
-.modal-panel{
-  position:relative;
-  margin:8vh auto;
-  max-width:900px; width:92%;
-  background:#fff; color:var(--text);
-  border-radius:24px; padding:24px;
-  box-shadow:var(--shadow);
-}
-.modal-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-.modal-body{ max-height:70vh; overflow:auto; }
-
-/* Artists list inside modal */
-.artist-grid{
-  display:grid; gap:10px;
-  grid-template-columns:repeat(1,minmax(0,1fr));
-}
-@media (min-width:640px){ .artist-grid{ grid-template-columns:repeat(2,1fr); } }
-@media (min-width:1024px){ .artist-grid{ grid-template-columns:repeat(3,1fr); } }
-.artist-grid li{
-  padding:8px 0;
-  border-bottom:1px solid rgba(0,0,0,.06);
-}
-
-/* Tiny helper for the 'View' button look */
-.underline-on-hover{ text-decoration:underline; }
-
-/* === Past Events "View" button styling === */
-#open-artists {
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  background: transparent;
-  font-weight: 600;
-  transition: all 0.25s ease;
-}
-
-#open-artists:hover {
-  background: var(--gold);
-  color: white;
-  box-shadow: var(--shadow);
-  transform: translateY(-1px);
-}
+.site-footer{padding:48px 0 72px;color:rgba(71,70,70,.7)}
+.underline-on-hover{text-decoration:underline}
