@@ -1,6 +1,6 @@
-/* =========
-   Design tokens
-   ========= */
+/* =========================
+   Design tokens / globals
+   ========================= */
 :root{
   --bg:#FBF8F1;
   --text:#474646;
@@ -11,13 +11,10 @@
   --shadow:0 10px 30px rgba(0,0,0,.08);
   --radius:24px;
 
-  /* sticky header height (adjust if your nav changes) */
+  /* set this to your real nav height */
   --header-h:96px;
 }
 
-/* =========
-   Base
-   ========= */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -34,21 +31,33 @@ img{max-width:100%;height:auto;display:block}
 .container{width:100%;max-width:1120px;margin-inline:auto;padding:0 24px}
 .narrow{max-width:840px}
 
-/* =========
+/* =========================
+   Page-level scroll snapping
+   ========================= */
+html{
+  scroll-snap-type:y mandatory;         /* use 'proximity' if you want softer snap */
+  scroll-padding-top:var(--header-h);   /* snaps account for sticky header */
+}
+main{ height:auto; overflow:visible; }  /* body scrolls normally */
+
+/* Each major section fills the viewport below the header and centers */
+.section{
+  min-height:calc(100vh - var(--header-h));
+  display:flex; align-items:center; justify-content:center;
+  scroll-snap-align:center;
+  padding:0 !important;
+}
+
+/* =========================
    Header + Nav
-   ========= */
+   ========================= */
 .site-header{
-  position:sticky; top:0; z-index:40;
-  /* visible base so sections can center visually below it */
+  position:sticky; top:0; z-index:1000;
   background:rgba(251,248,241,.95);
   backdrop-filter:saturate(120%) blur(6px);
   border-bottom:1px solid rgba(71,70,70,.15);
   box-shadow:0 2px 16px rgba(0,0,0,.04);
   transition:background .25s ease, border-color .25s ease, box-shadow .25s ease;
-}
-.site-header.scrolled{
-  /* optional: slightly different look on scroll */
-  background:rgba(251,248,241,.95);
 }
 .nav{
   display:flex; align-items:center; justify-content:space-between;
@@ -61,53 +70,23 @@ img{max-width:100%;height:auto;display:block}
 .nav-links a:hover{opacity:.8}
 @media (min-width:768px){.nav-links{display:flex}}
 
-/* =========
-   Optional header fade overlay (kept since you added it in HTML)
-   Place right after </header> in HTML
-   ========= */
+/* Optional visual fade below header (does NOT affect layout) */
 .scroll-fade{
-  position: fixed;         /* was: sticky */
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--header-h);
-  z-index: 30;             /* header stays at 40 */
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(251,248,241,1) 0%,
-    rgba(251,248,241,0) 100%
-  );
+  position:fixed; top:0; left:0; right:0;
+  height:var(--header-h);
+  z-index:900; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(251,248,241,1) 0%, rgba(251,248,241,0) 100%);
 }
 
-
-/* (If you ever want to try the mask-on-header again, keep this class available) */
+/* Keep this available if you ever want mask-on-header instead */
 .header-fade{
   -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) 16%);
   mask-image:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) 16%);
 }
 
-/* =========
-   Scroll snapping (center each section beneath the sticky header)
-   ========= */
-main{
-  height:100vh; overflow-y:scroll;
-  scroll-snap-type:y mandatory;       /* use 'proximity' if you want it softer */
-  scroll-padding-top:var(--header-h); /* snap math accounts for header */
-}
-.section{
-  /* Fill only the visible area below the header */
-  min-height:calc(100vh - var(--header-h));
-  display:flex; align-items:center; justify-content:center;
-  scroll-snap-align:center;
-
-  /* remove old vertical padding that pushed content low */
-  padding:0;
-}
-
-/* =========
-   Hero + content bits
-   ========= */
+/* =========================
+   Hero / typography / buttons
+   ========================= */
 .hero-title{font-size:48px; line-height:1.05; margin:8px 0 0; font-weight:700; letter-spacing:-.02em}
 @media (min-width:640px){.hero-title{font-size:80px}}
 .copy{font-size:18px; color:rgba(71,70,70,.86)}
@@ -118,24 +97,27 @@ main{
 .accent{color:var(--accent)}
 .accent-ink{color:var(--ink)}
 
-.btn{display:inline-block; border-radius:999px; padding:10px 18px; font-weight:600; transition:.2s transform,.2s filter,.2s box-shadow; will-change:transform,filter}
+.btn{
+  display:inline-block; border-radius:999px; padding:10px 18px; font-weight:600;
+  transition:.2s transform,.2s filter,.2s box-shadow; will-change:transform,filter
+}
 .btn:hover{transform:translateY(-1px); filter:brightness(1.04)}
 .btn-ghost{border:1px solid rgba(71,70,70,.25); background:transparent; color:var(--text)}
 .btn-accent{background:var(--accent); color:white; box-shadow:var(--shadow)}
 .btn-ink{background:var(--ink); color:white; box-shadow:var(--shadow)}
 .cta-row{display:flex; gap:12px; justify-content:center; margin-top:24px}
 
-/* =========
+/* =========================
    Background blobs (unchanged)
-   ========= */
+   ========================= */
 .bg-blob{position:fixed; inset:auto; z-index:-1; border-radius:9999px; filter:blur(60px); opacity:.45; pointer-events:none}
 .blob-1{top:-80px; left:-80px; width:45vw; height:45vw; background:#8FB1D033}
 .blob-2{top:30vh; right:-120px; width:35vw; height:35vw; background:#8FB1D029}
 .blob-3{bottom:-100px; left:25vw; width:38vw; height:38vw; background:#38486222}
 
-/* =========
-   Grids / cards (kept from your styles)
-   ========= */
+/* =========================
+   Grids / cards
+   ========================= */
 .grid.features{display:grid; gap:18px; margin-top:40px; grid-template-columns:repeat(1,minmax(0,1fr))}
 @media (min-width:640px){.grid.features{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1024px){.grid.features{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -154,9 +136,9 @@ main{
 .card h3{margin:0 0 6px; color:var(--accent); font-weight:700}
 @keyframes rise{to{transform:none; opacity:1}}
 
-/* =========
-   Sections with backgrounds (unchanged)
-   ========= */
+/* =========================
+   Section backgrounds
+   ========================= */
 .callouts{position:relative; overflow:hidden; text-align:center}
 .callouts .callouts-backdrop{
   position:absolute; inset:0; z-index:0;
@@ -180,9 +162,9 @@ main{
   opacity:.65
 }
 
-/* =========
-   Artists / forms / footer (unchanged)
-   ========= */
+/* =========================
+   Artists / forms / footer
+   ========================= */
 .artist-list{display:flex; flex-wrap:wrap; gap:10px 16px; justify-content:center; margin:12px 0 0; padding:0; list-style:none}
 .artist-list li{background:white; border:1px solid rgba(71,70,70,.12); border-radius:999px; padding:6px 12px}
 
