@@ -10,7 +10,7 @@
   --cotton:#F5F3EE;
   --shadow:0 10px 30px rgba(0,0,0,.08);
   --radius:24px;
-  --header-h:96px; /* nav height */
+  --header-h:96px;
 }
 
 *{box-sizing:border-box}
@@ -152,6 +152,8 @@ main{height:auto;overflow:visible}
   background-position:center,right 8% center;
   opacity:1;filter:none;
 }
+/* ensure Past Events text sits above background */
+.capabilities .container{position:relative;z-index:2;}
 
 /* =========================
    Modal (Past Events)
@@ -193,24 +195,12 @@ main{height:auto;overflow:visible}
   text-align:center;
 }
 
-/* Spacing + staggered animation for For Artists/Audiences/Promoters */
+/* Spacing + visible fix for For Artists/Audiences/Promoters */
 #preview .bubble h2{
   margin:0 0 28px;line-height:1.25;
-  opacity:0;transform:translateY(12px);
-  transition:opacity 500ms ease,transform 500ms ease;
+  opacity:1;transform:none;
 }
 #preview .bubble h2:last-child{margin-bottom:0}
-.in-view #preview .bubble h2:nth-of-type(1){transition-delay:0ms}
-.in-view #preview .bubble h2:nth-of-type(2){transition-delay:120ms}
-.in-view #preview .bubble h2:nth-of-type(3){transition-delay:240ms}
-.in-view #preview .bubble h2{opacity:1;transform:translateY(0)}
-
-@media (prefers-reduced-motion:reduce){
-  #preview .bubble h2,
-  .in-view #preview .bubble h2{
-    transition:none;transform:none;opacity:1;
-  }
-}
 
 #preview .bubble-line{border:none;height:1px;background:rgba(255,255,255,.7);margin:14px auto;width:50%}
 #preview .bubble-links{display:flex;gap:12px;justify-content:center;text-transform:uppercase;font-size:12px;letter-spacing:.18em}
@@ -225,26 +215,3 @@ main{height:auto;overflow:visible}
 
 .site-footer{padding:48px 0 72px;color:rgba(71,70,70,.7)}
 .underline-on-hover{text-decoration:underline}
-
-/* === Temporary fix: make "For Artists / For Audiences / For Promoters" visible === */
-#preview .bubble h2 {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* (optional) Keep spacing nicely balanced */
-#preview .bubble h2 {
-  margin: 0 0 28px;
-  line-height: 1.25;
-}
-#preview .bubble h2:last-child {
-  margin-bottom: 0;
-}
-
-/* === Fix: make "Past Events" heading always visible === */
-#capabilities .title.gold {
-  opacity: 1 !important;
-  transform: none !important;
-  margin-bottom: 24px;  /* adds breathing room above the View button */
-  line-height: 1.2;
-}
