@@ -215,3 +215,16 @@ main{height:auto;overflow:visible}
 
 .site-footer{padding:48px 0 72px;color:rgba(71,70,70,.7)}
 .underline-on-hover{text-decoration:underline}
+/* === Compact spacing for Enquiries section === */
+#enquiries.section {
+  padding-top: 3rem;   /* half of normal spacing */
+  padding-bottom: 3rem;
+}
+
+/* Optional: if it still feels too tall on mobile */
+@media (max-width: 600px) {
+  #enquiries.section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
