@@ -216,15 +216,19 @@ main{height:auto;overflow:visible}
 .site-footer{padding:48px 0 72px;color:rgba(71,70,70,.7)}
 .underline-on-hover{text-decoration:underline}
 /* === Compact spacing for Enquiries section === */
+/* === Compact, tinted Enquiries section === */
 #enquiries.section {
-  padding-top: 3rem;   /* half of normal spacing */
-  padding-bottom: 3rem;
+  padding-top: 1.5rem;     /* much smaller vertical space */
+  padding-bottom: 1.5rem;
+  background-color: #f9f8f5;  /* subtle off-white tint that fits W.E.B.’s palette */
+  border-top: 1px solid rgba(197, 163, 81, 0.15);  /* faint gold separator line */
+  border-bottom: 1px solid rgba(197, 163, 81, 0.15);
 }
 
-/* Optional: if it still feels too tall on mobile */
+/* Keep mobile view even tighter */
 @media (max-width: 600px) {
   #enquiries.section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
