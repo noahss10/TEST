@@ -232,3 +232,33 @@ main{height:auto;overflow:visible}
     padding-bottom: 1rem;
   }
 }
+/* === Enquiries: very compact + Azure Tide background === */
+#enquiries.section {
+  padding-top: 0.75rem;      /* much shorter */
+  padding-bottom: 0.75rem;
+  background-color: #4E6D8B; /* SW 9684 Azure Tide (approx) */
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Tighten inner spacing */
+#enquiries .title { margin: 0 0 0.25rem; }
+#enquiries .copy  { margin: 0 0 0.5rem; }
+
+/* Gold outline button remains readable on deep blue */
+#enquiries .btn-outline-gold {
+  border-color: #c5a351;
+  color: #c5a351;
+}
+#enquiries .btn-outline-gold:hover {
+  background: #c5a351;
+  color: #0f172a; /* dark text on gold for contrast */
+}
+
+/* Even tighter on small screens */
+@media (max-width: 600px) {
+  #enquiries.section {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
