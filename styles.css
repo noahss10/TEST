@@ -310,3 +310,50 @@ main{height:auto;overflow:visible}
     margin: 0 1rem;
   }
 }
+/* === Enquiries: compact + Azure Tide background === */
+#enquiries.section {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background-color: #4E6D8B; /* SW 9684 Azure Tide (approx) */
+}
+
+/* Keep title gold as-is */
+#enquiries .title.gold { color: #C5A351; }
+
+/* Rounded rectangle bubble around ONLY the copy + button */
+#enquiries .enq-bubble {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 1rem 1.5rem;
+  border: 2px solid #F5F3EE;   /* off-white border */
+  border-radius: 1rem;          /* rounded rectangle */
+  background: transparent;      /* no fill */
+}
+
+/* Make the copy text off-white inside the bubble */
+#enquiries .enq-bubble .copy {
+  color: #F5F3EE;
+  margin: 0 0 0.75rem;
+}
+
+/* Make the button off-white too */
+#enquiries .enq-bubble .btn-outline-gold {
+  border-color: #F5F3EE;
+  color: #F5F3EE;
+  background: transparent;
+}
+#enquiries .enq-bubble .btn-outline-gold:hover {
+  background: #F5F3EE;   /* invert on hover */
+  color: #0f172a;        /* dark text on off-white for contrast */
+}
+
+/* Extra-tight on small screens */
+@media (max-width: 600px) {
+  #enquiries.section {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  #enquiries .enq-bubble {
+    padding: 0.75rem 1rem;
+  }
+}
