@@ -357,3 +357,53 @@ main{height:auto;overflow:visible}
     padding: 0.75rem 1rem;
   }
 }
+/* === Enquiries: compact, Azure Tide bg, border-only bubble === */
+#enquiries.section {
+  background-color: #4E6D8B;           /* SW 9684 Azure Tide (approx) */
+  padding-top: 0.5rem;                 /* very tight vertical space */
+  padding-bottom: 0.5rem;
+  min-height: auto;                    /* cancel any global min-height, if present */
+}
+
+/* Kill any old "container" fill from previous step */
+#enquiries .container {
+  background: transparent !important;  /* ensure no cream behind everything */
+  box-shadow: none !important;
+  padding-left: 0; padding-right: 0;   /* optional: tighten horizontally if desired */
+}
+
+/* Keep the gold title exactly as-is */
+#enquiries .title.gold { color: #C5A351; margin: 0 0 0.5rem; }
+
+/* Border-only rounded rectangle around copy + button */
+#enquiries .enq-bubble {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border: 2px solid #F5F3EE;   /* off-white border */
+  border-radius: 1rem;
+  background: transparent;     /* no fill */
+}
+
+/* Off-white copy text inside the bubble */
+#enquiries .enq-bubble .copy {
+  color: #F5F3EE;
+  margin: 0 0 0.5rem;
+}
+
+/* Off-white outlined button inside the bubble */
+#enquiries .enq-bubble .btn-outline-gold {
+  border-color: #F5F3EE;
+  color: #F5F3EE;
+  background: transparent;
+  font-weight: 600;
+}
+#enquiries .enq-bubble .btn-outline-gold:hover {
+  background: #F5F3EE;         /* invert on hover */
+  color: #0f172a;              /* dark text on off-white */
+}
+
+/* Extra-tight on small screens */
+@media (max-width: 600px) {
+  #enquiries.section { padding-top: 0.4rem; padding-bottom: 0.4rem; }
+  #enquiries .enq-bubble { padding: 0.6rem 0.8rem; }
+}
