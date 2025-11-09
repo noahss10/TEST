@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     await resend.emails.send({
       from: 'W.E.B. Contact <contact@yourdomain.com>',
-      to: ['your-inbox@yourdomain.com'],  // change to your actual inbox
+      to: ['nsilverman@bridgeconcerts.com'],  // change to your actual inbox
       reply_to: email,
       subject: `New inquiry from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`
