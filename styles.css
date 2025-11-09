@@ -407,3 +407,64 @@ main{height:auto;overflow:visible}
   #enquiries.section { padding-top: 0.4rem; padding-bottom: 0.4rem; }
   #enquiries .enq-bubble { padding: 0.6rem 0.8rem; }
 }
+/* === Enquiries: Azure Tide bg, border bubble, white button === */
+#enquiries.section {
+  background-color: #4E6D8B; /* SW 9684 Azure Tide */
+  padding-top: 4rem;        /* doubled section height */
+  padding-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Rounded rectangle bubble (no fill) */
+#enquiries .enq-bubble {
+  display: inline-block;
+  border: 2px solid #F5F3EE; /* off-white border */
+  border-radius: 2rem;
+  padding: 2.5rem 3rem;
+  background: transparent;
+}
+
+/* Title inside bubble remains gold */
+#enquiries .enq-bubble .title.gold {
+  color: #C5A351;
+  margin-bottom: 0.75rem;
+}
+
+/* Copy text inside bubble in off-white */
+#enquiries .enq-bubble .copy {
+  color: #F5F3EE;
+  margin: 0 0 1rem;
+}
+
+/* === White version of the "View" button === */
+.btn-outline-white {
+  display: inline-block;
+  padding: 0.6rem 1.75rem;
+  border: 2px solid #F5F3EE;
+  border-radius: 9999px;
+  background: transparent;
+  color: #F5F3EE;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-outline-white:hover {
+  background: #F5F3EE;
+  color: #4E6D8B; /* invert for contrast */
+  text-decoration: underline;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  #enquiries.section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  #enquiries .enq-bubble {
+    padding: 1.5rem 2rem;
+    margin: 0 1rem;
+  }
+}
